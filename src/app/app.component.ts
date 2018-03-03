@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Http} from '@angular/http';
+import { GolfCourseService} from "./Services/golfCardServices";
+import {OnInit} from '@angular/core';
+import { GolfCourse} from "./Services/GolfCourseInterface";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Please Pick a Golf Course';
+
+
 }

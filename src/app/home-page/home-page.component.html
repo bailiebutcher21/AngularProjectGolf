@@ -1,9 +1,13 @@
-<div style="text-align:center">
+
+<div style = "text-align:center">
   <h1>
     {{pageTitle}}
   </h1>
 
-  <img width = '400' src = '../assets/img/golfcourse.jpg'/>
+  <img width = '100' src = '../assets/Images/golfball.png'/>
+  <h2>
+    {{description}}
+  </h2>
 
 
   <mat-form-field>
@@ -17,7 +21,7 @@
 
 
   <mat-form-field *ngIf="selectedCourse">
-    <mat-select  placeholder="Select Tee Type">
+    <mat-select  placeholder= "Select Tee Type" [(ngModel)] = "tee" >
       <mat-option *ngFor="let tee of selectedCourse.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
         {{tee.tee_type}}
       </mat-option>
@@ -26,4 +30,4 @@
 
 
 </div>
-<button mat-button>START GAME</button>
+<button mat-button [routerLink]="['/table']">START GAME</button>

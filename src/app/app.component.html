@@ -1,26 +1,5 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}!
-  </h1>
-  <img width="700" src="../assets/img/golfcourse.jpg">
-</div>
+<mat-toolbar>Golf Card</mat-toolbar>
 
-<mat-form-field>
-  <mat-select placeholder="Select A Golf Course">
-    <mat-option *ngFor="let course of golfCourses" [value]="course.id">
-      {{ course.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<mat-form-field *ngIf="golfCourses">
-  <mat-select placeholder="Select Tee Type">
-    <mat-option *ngFor="let tee of selectedCourse.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
-      {{ tee.tee_type }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
+<router-outlet></router-outlet>
 
 

@@ -1,3 +1,28 @@
-<p>
-  golf-card works!
-</p>
+<div class="card">
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+
+      <ng-container [matColumnDef]="col" *ngFor='let col of displayedColumns'>
+        <mat-header-cell *matHeaderCellDef>{{col | uppercase}}</mat-header-cell>
+        <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+      <mat-row *matRowDef = "let score; columns: displayedColumns;"></mat-row>
+
+
+    </mat-table>
+
+
+
+  </div>
+
+
+  <button mat-button>Save</button>
+  <button mat-button [routerLink] = " ['/welcome']">START NEW
+    GAME</button>
+</div>

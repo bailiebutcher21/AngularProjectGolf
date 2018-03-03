@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { GolfCourseService} from '../Services/golfCardServices';
+import { GolfCourseService} from "../Services/golfCardServices";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-welcome',
+  templateUrl: './welcome.component.html',
+  styleUrls: ['./welcome.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class WelcomeComponent implements OnInit {
 
   golfObject;
   pageTitle = 'Welcome to your golf card!';
+  description = 'Please choose a golf course to begin';
   cardCourses;
   selectedCourse;
   teeType;
+  course: string;
+  tee: string;
+  courseRetrieved: Subscription;
 
   constructor(private golfData: GolfCourseService) {
   }
@@ -22,15 +27,20 @@ export class HomePageComponent implements OnInit {
       this.golfObject = data;
       this.cardCourses = this.golfObject.courses;
     });
+    this.courseRetrieved = this.golfData.courseChanged.subscribe(result => {
+      this.selectedCourse = result;
+    });
 
   }
+
   setCourse(course) {
+    console.log('setCourse');
     this.golfData.setCurrentCourse(course);
-    this.golfData.getCourse().subscribe(p => {
-      this.selectedCourse = p;
-      this.golfData.setCurrentCourse(p);
-      console.log(this.selectedCourse);
-    });
+//    this.golfData.getCourse().subscribe(p => {
+//      this.selectedCourse = p;
+//      this.golfData.setCurrentCourse(p);
+//      console.log(this.selectedCourse);
+//    });
     this.pageTitle = course.name;
 
   }
@@ -38,5 +48,8 @@ export class HomePageComponent implements OnInit {
     this.teeType = tee;
     this.golfData.getSetTeeType(tee);
   }
-
+  onclick() {
+    console.log(this.tee);
+    console.log('onclick');
+  }
 }
